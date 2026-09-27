@@ -1,4 +1,4 @@
-package hdl
+package builtin
 
 import (
 	"testing"
@@ -7,8 +7,8 @@ import (
 func TestNand(t *testing.T) {
 	tests := []struct {
 		name string
-		a, b int
-		want int
+		a, b Bit
+		want Bit
 	}{
 		{name: "Nand(0,0)", a: 0, b: 0, want: 1},
 		{name: "Nand(0,1)", a: 0, b: 1, want: 1},

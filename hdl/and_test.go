@@ -1,12 +1,15 @@
 package hdl
 
-import "testing"
+import (
+	"github.com/a-skua/nand2tetris/hdl/builtin"
+	"testing"
+)
 
 func TestAnd(t *testing.T) {
 	tests := []struct {
 		name string
-		a, b int
-		want int
+		a, b builtin.Bit
+		want builtin.Bit
 	}{
 		{name: "And(0,0)", a: 0, b: 0, want: 0},
 		{name: "And(0,1)", a: 0, b: 1, want: 0},

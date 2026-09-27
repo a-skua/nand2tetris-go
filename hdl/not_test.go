@@ -1,14 +1,15 @@
 package hdl
 
 import (
+	"github.com/a-skua/nand2tetris/hdl/builtin"
 	"testing"
 )
 
 func TestNot(t *testing.T) {
 	tests := []struct {
 		name string
-		in   int
-		want int
+		in   builtin.Bit
+		want builtin.Bit
 	}{
 		{name: "Not(0)", in: 0, want: 1},
 		{name: "Not(1)", in: 1, want: 0},
