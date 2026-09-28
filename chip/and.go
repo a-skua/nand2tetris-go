@@ -1,6 +1,6 @@
-package logicgate
+package chip
 
-import "github.com/a-skua/nand2tetris/logicgate/builtin"
+import "github.com/a-skua/nand2tetris/chip/builtin"
 
 // And
 //
