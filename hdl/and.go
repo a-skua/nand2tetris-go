@@ -10,6 +10,6 @@ import "github.com/a-skua/nand2tetris/hdl/builtin"
 // 1 | 0 | 0
 // 1 | 1 | 1
 func And(a, b builtin.Bit) (out builtin.Bit) {
-	// TODO a & b
+	out = Not(builtin.Nand(a, b))
 	return
 }
