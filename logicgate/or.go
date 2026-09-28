@@ -1,6 +1,6 @@
-package hdl
+package logicgate
 
-import "github.com/a-skua/nand2tetris/hdl/builtin"
+import "github.com/a-skua/nand2tetris/logicgate/builtin"
 
 // Or
 //
