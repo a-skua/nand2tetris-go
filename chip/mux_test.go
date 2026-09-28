@@ -30,3 +30,36 @@ func TestMux(t *testing.T) {
 		})
 	}
 }
+
+func TestMux16(t *testing.T) {
+	tests := []struct {
+		name string
+		a, b [16]builtin.Bit
+		sel  builtin.Bit
+		want [16]builtin.Bit
+	}{
+		{
+			name: "Mux16([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 0)",
+			a:    [16]builtin.Bit{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+			b:    [16]builtin.Bit{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+			sel:  0,
+			want: [16]builtin.Bit{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		},
+		{
+			name: "Mux16([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 1)",
+			a:    [16]builtin.Bit{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+			b:    [16]builtin.Bit{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+			sel:  1,
+			want: [16]builtin.Bit{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := Mux16(tt.a, tt.b, tt.sel)
+			if got != tt.want {
+				t.Errorf("Mux16(%v,%v,%d) = %v; want %v", tt.a, tt.b, tt.sel, got, tt.want)
+			}
+		})
+	}
+}
