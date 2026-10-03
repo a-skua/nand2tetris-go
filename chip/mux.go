@@ -49,12 +49,34 @@ func MUX16(a, b [16]builtin.Bit, sel builtin.Bit) (out [16]builtin.Bit) {
 	return
 }
 
+// MUX4WAY16
+//
+// a | b | c | d | sel | out
+// 1 | 0 | 0 | 0 | 00  | 1
+// 0 | 1 | 0 | 0 | 01  | 1
+// 0 | 0 | 1 | 0 | 10  | 1
+// 0 | 0 | 0 | 1 | 11  | 1
 func MUX4WAY16(a, b, c, d [16]builtin.Bit, sel [2]builtin.Bit) (out [16]builtin.Bit) {
-	// TODO
+	ab := MUX16(a, b, sel[0])
+	cd := MUX16(c, d, sel[0])
+	out = MUX16(ab, cd, sel[1])
 	return
 }
 
+// MUX8WAY16
+//
+// a | b | c | d | e | f | g | h | sel | out
+// 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 000 | 1
+// 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 001 | 1
+// 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 010 | 1
+// 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 011 | 1
+// 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 100 | 1
+// 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 101 | 1
+// 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 110 | 1
+// 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 111 | 1
 func MUX8WAY16(a, b, c, d, e, f, g, h [16]builtin.Bit, sel [3]builtin.Bit) (out [16]builtin.Bit) {
-	// TODO
+	abcd := MUX4WAY16(a, b, c, d, [2]builtin.Bit(sel[0:2]))
+	efgh := MUX4WAY16(e, f, g, h, [2]builtin.Bit(sel[0:2]))
+	out = MUX16(abcd, efgh, sel[2])
 	return
 }
